@@ -31,10 +31,15 @@ public class HeroSlideImageMapper {
     }
 
     public HeroSlideResponse toResponse(HeroSlideImage entity, String baseUrl) {
-        // Build full image URL
+        // Build full image URL - use relative path for HTTPS compatibility
         String fullImageUrl = null;
         if (entity.getImagePath() != null) {
-            fullImageUrl = baseUrl + "/" + entity.getImagePath();
+            // Add leading slash if not present to create absolute URL path
+            String path = entity.getImagePath();
+            if (!path.startsWith("/")) {
+                path = "/" + path;
+            }
+            fullImageUrl = path;
         }
 
         return HeroSlideResponse.builder()
