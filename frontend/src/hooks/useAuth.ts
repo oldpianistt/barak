@@ -13,7 +13,7 @@ export function useAuth() {
     const checkAuth = async () => {
         try {
             // Try to access a protected endpoint to check if authenticated
-            const response = await fetch('http://localhost:8081/api/admin/hero-slides', {
+            const response = await fetch('/api/admin/hero-slides', {
                 credentials: 'include',
             });
             setIsAuthenticated(response.ok);
@@ -30,7 +30,7 @@ export function useAuth() {
             formData.append('username', credentials.username);
             formData.append('password', credentials.password);
 
-            const response = await fetch('http://localhost:8081/api/auth/login', {
+            const response = await fetch('/api/auth/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
@@ -52,7 +52,7 @@ export function useAuth() {
 
     const logout = async (): Promise<void> => {
         try {
-            await fetch('http://localhost:8081/api/auth/logout', {
+            await fetch('/api/auth/logout', {
                 method: 'POST',
                 credentials: 'include',
             });

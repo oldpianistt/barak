@@ -1,7 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { HeroSlide, HeroSlideFormData } from '../types/heroSlide';
 
-const API_BASE_URL = 'http://localhost:8081/api';
+const API_BASE_URL = '/api';
 
 // Fetch active hero slides for public homepage
 export function useHeroSlides() {
