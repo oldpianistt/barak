@@ -11,7 +11,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     // Pre-encoded password for STLStoneGalleryAdmin (rM8!Z@4QvP#2^xE7L9K$)
     // Generated with BCryptPasswordEncoder - never re-encode on each request!
-    private static final String ENCODED_ADMIN_PASSWORD = "$2a$10$zVxF8qA6YfPmqGWF2QhqZ.QXJKq3nNqYGqBqXqF8QYQqWqF8QYQqW";
+    private static final String ENCODED_ADMIN_PASSWORD = "$2a$10$nkL/XMXl5bAUk1jNrpXyYugOZsXxQA2mmWEkfdlN/5MReFLAM5XgS";
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
