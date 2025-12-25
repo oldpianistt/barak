@@ -26,7 +26,7 @@ export function useMarbles(page: number = 0, size: number = 20, onlyVisible: boo
       if (onlyVisible) {
         params.append('onlyVisible', 'true');
       }
-      const response = await api.get<PageResponse<any>>(`/marble-images?${params}`);
+      const response = await api.get<PageResponse<any>>(`/public/marble-images?${params}`);
       // Transform backend response to match frontend type
       const transformedContent = response.data.content.map((item: any) => ({
         ...item,
@@ -47,7 +47,7 @@ export function useMarble(id: number) {
   return useQuery({
     queryKey: ['marble', id],
     queryFn: async () => {
-      const response = await api.get<any>(`/marble-images/${id}`);
+      const response = await api.get<any>(`/public/marble-images/${id}`);
       // Transform backend response to match frontend type
       const marble = {
         ...response.data,
@@ -99,7 +99,7 @@ export function useCreateMarble() {
         data.append('imageFile', formData.imageFile);
       }
 
-      const response = await api.post<Marble>('/marble-images', data, {
+      const response = await api.post<Marble>('/admin/marble-images', data, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -147,7 +147,7 @@ export function useUpdateMarble(id: number) {
         data.append('imageFile', formData.imageFile);
       }
 
-      const response = await api.put<Marble>(`/marble-images/${id}`, data, {
+      const response = await api.put<Marble>(`/admin/marble-images/${id}`, data, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -171,7 +171,7 @@ export function useDeleteMarble() {
         return;
       }
 
-      await api.delete(`/marble-images/${id}`);
+      await api.delete(`/admin/marble-images/${id}`);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['marbles'] });

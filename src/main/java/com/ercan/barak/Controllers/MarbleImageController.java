@@ -14,24 +14,39 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
-@RequestMapping("/api/admin/marble-images")
+@RequestMapping("/api")
 @RequiredArgsConstructor
 public class MarbleImageController {
 
     private final MarbleImageService service;
 
-    @PostMapping(consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
+    // Public endpoints - no authentication required
+    @GetMapping("/public/marble-images")
+    public ResponseEntity<PageResponse<MarbleImageResponse>> listPublic(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "20") int size) {
+        // Only show visible marbles to public
+        return ResponseEntity.ok(service.list(page, size, true));
+    }
+
+    @GetMapping("/public/marble-images/{id}")
+    public ResponseEntity<MarbleImageResponse> getByIdPublic(@PathVariable Long id) {
+        return ResponseEntity.ok(service.getById(id));
+    }
+
+    // Admin endpoints - require authentication
+    @PostMapping(value = "/admin/marble-images", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
     public ResponseEntity<MarbleImageResponse> create(
             @RequestPart("request") @Valid CreateMarbleImageRequest request,
             @RequestPart(value = "imageFile", required = false) MultipartFile imageFile) {
         // Enforce imageFile requirement if needed, user said it's created via
         // multipart.
-        // User request: "Görsel dosyası request’te MultipartFile olarak Controller
+        // User request: "Görsel dosyası request'te MultipartFile olarak Controller
         // seviyesinde ayrı parametre olsun"
         return new ResponseEntity<>(service.create(request, imageFile), HttpStatus.CREATED);
     }
 
-    @PutMapping(value = "/{id}", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
+    @PutMapping(value = "/admin/marble-images/{id}", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
     public ResponseEntity<MarbleImageResponse> update(
             @PathVariable Long id,
             @RequestPart("request") @Valid UpdateMarbleImageRequest request,
@@ -39,12 +54,12 @@ public class MarbleImageController {
         return ResponseEntity.ok(service.update(id, request, imageFile));
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/admin/marble-images/{id}")
     public ResponseEntity<MarbleImageResponse> getById(@PathVariable Long id) {
         return ResponseEntity.ok(service.getById(id));
     }
 
-    @GetMapping
+    @GetMapping("/admin/marble-images")
     public ResponseEntity<PageResponse<MarbleImageResponse>> list(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "20") int size,
@@ -52,7 +67,7 @@ public class MarbleImageController {
         return ResponseEntity.ok(service.list(page, size, onlyVisible));
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/admin/marble-images/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         service.delete(id);
         return ResponseEntity.noContent().build();
