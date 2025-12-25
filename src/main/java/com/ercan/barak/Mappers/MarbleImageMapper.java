@@ -46,7 +46,7 @@ public class MarbleImageMapper {
             if (!path.startsWith("/")) {
                 path = "/" + path;
             }
-            fullImageUrl = "http://localhost:8081" + path;
+            fullImageUrl = path;
         }
 
         return MarbleImageResponse.builder()
