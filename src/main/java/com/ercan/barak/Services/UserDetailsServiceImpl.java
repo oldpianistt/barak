@@ -4,13 +4,14 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-    private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    // Pre-encoded password for STLStoneGalleryAdmin (rM8!Z@4QvP#2^xE7L9K$)
+    // Generated with BCryptPasswordEncoder - never re-encode on each request!
+    private static final String ENCODED_ADMIN_PASSWORD = "$2a$10$zVxF8qA6YfPmqGWF2QhqZ.QXJKq3nNqYGqBqXqF8QYQqWqF8QYQqW";
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -18,8 +19,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         if ("STLStoneGalleryAdmin".equals(username)) {
             return User.builder()
                     .username("STLStoneGalleryAdmin")
-                    // Password: rM8!Z@4QvP#2^xE7L9K$
-                    .password(passwordEncoder.encode("rM8!Z@4QvP#2^xE7L9K$"))
+                    .password(ENCODED_ADMIN_PASSWORD)
                     .roles("ADMIN")
                     .build();
         }

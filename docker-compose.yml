@@ -71,7 +71,7 @@ services:
     container_name: barak-frontend
     restart: unless-stopped
     environment:
-      VITE_API_BASE_URL: /api/admin
+      VITE_API_BASE_URL: /api
     ports:
       - "${FRONTEND_PORT:-80}:80"
     networks:
