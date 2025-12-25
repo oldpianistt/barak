@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Block admin panel from search engines
+Disallow: /yonetim/
+
+# Sitemap location
+Sitemap: https://stlstonegallery.com/sitemap.xml
