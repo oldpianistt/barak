@@ -290,7 +290,7 @@ export function AdminMarbleForm() {
                 />
               </div>
 
-              {/* Water Absorption */}
+              {/* Size */}
               <div>
                 <label className="block text-sm font-medium uppercase tracking-wide mb-3">
                   {t('marble.waterAbsorption')}

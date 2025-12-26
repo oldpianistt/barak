@@ -23,12 +23,12 @@
     "stockQuantity": "Stock Quantity",
     "category": "Category",
     "density": "Density",
-    "waterAbsorption": "Water Absorption",
+    "waterAbsorption": "Size",
     "compressiveStrength": "Compressive Strength",
     "flexuralStrength": "Flexural Strength"
   },
   "gallery": {
-    "title": "Marble Collection",
+    "title": "Gallery",
     "previous": "Previous",
     "next": "Next",
     "pageOf": "Page {{current}} of {{total}}"
@@ -43,7 +43,7 @@
     "whyChooseUs": "Why Choose Us",
     "whyChooseDesc": "Built on a foundation of quality, expertise, and unwavering commitment to excellence",
     "globalHeritage": "Global Heritage",
-    "globalHeritageDesc": "Decades of experience in marble extraction and processing from Europe",
+    "globalHeritageDesc": "Decades of experience in marble extraction and processing from Türkiye",
     "premiumQuality": "Premium Quality",
     "premiumQualityDesc": "Every piece meets the highest standards of craftsmanship and beauty",
     "expertService": "Expert Service",
