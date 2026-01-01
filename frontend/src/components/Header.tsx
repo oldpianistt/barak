@@ -125,13 +125,6 @@ export function Header() {
               >
                 {t('nav.contact')}
               </Link>
-              <Link
-                to="/admin"
-                onClick={() => setMobileMenuOpen(false)}
-                className="tracking-[0.2em] uppercase text-xs hover:text-neutral-600"
-              >
-                {t('nav.admin')}
-              </Link>
 
               <div className="flex items-center gap-4 pt-6 border-t border-neutral-200">
                 <Globe className="w-4 h-4 text-neutral-400" />
