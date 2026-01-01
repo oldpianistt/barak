@@ -68,7 +68,7 @@ export function GalleryPage() {
                 : 'bg-neutral-100 hover:bg-neutral-200 text-neutral-700'
                 }`}
             >
-              {category === 'all' ? 'Tümü' : category}
+              {category === 'all' ? 'All' : category}
             </button>
           ))}
         </div>
