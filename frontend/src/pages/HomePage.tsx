@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useHeroSlides } from '../hooks/useHeroSlides';
 import { useMarbles } from '../hooks/useMarbles';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Marble } from '../types/marble';
 
 // MarbleCard Component
