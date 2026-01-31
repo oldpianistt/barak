@@ -190,6 +190,63 @@ export function AboutPage() {
           </motion.div>
         </div>
       </section>
+
+      {/* Certifications / Partners Section */}
+      <section className="py-20 px-6 lg:px-16 bg-gradient-to-b from-white to-neutral-50 relative overflow-hidden">
+        {/* Decorative background pattern */}
+        <div className="absolute inset-0 opacity-[0.03]" style={{
+          backgroundImage: `radial-gradient(circle at 1px 1px, #000 1px, transparent 0)`,
+          backgroundSize: '40px 40px'
+        }} />
+
+        <div className="max-w-[1200px] mx-auto relative">
+          {/* Section Title */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+
+            <h3 className="text-3xl md:text-4xl tracking-[0.15em] uppercase font-light text-neutral-800">
+              {t('about certifications') || 'Certifications & Standards'}
+            </h3>
+            <div className="w-16 h-px bg-gradient-to-r from-transparent via-neutral-400 to-transparent mx-auto mt-4" />
+          </motion.div>
+
+          {/* Logos */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="flex items-center justify-center gap-16 md:gap-28"
+          >
+            <motion.div
+              whileHover={{ scale: 1.05, y: -5 }}
+              transition={{ duration: 0.3 }}
+              className="w-36 h-36 md:w-44 md:h-44 p-4 bg-white rounded-lg shadow-lg shadow-black/5 hover:shadow-xl hover:shadow-black/10 transition-shadow duration-300 flex items-center justify-center"
+            >
+              <img src="/1.svg" alt="NSF Certification" className="max-h-full max-w-full object-contain" />
+            </motion.div>
+            <motion.div
+              whileHover={{ scale: 1.05, y: -5 }}
+              transition={{ duration: 0.3 }}
+              className="w-36 h-36 md:w-44 md:h-44 p-4 bg-white rounded-lg shadow-lg shadow-black/5 hover:shadow-xl hover:shadow-black/10 transition-shadow duration-300 flex items-center justify-center"
+            >
+              <img src="/2.jpeg" alt="GreenGuard Certification" className="max-h-full max-w-full object-contain" />
+            </motion.div>
+            <motion.div
+              whileHover={{ scale: 1.05, y: -5 }}
+              transition={{ duration: 0.3 }}
+              className="w-36 h-36 md:w-44 md:h-44 p-4 bg-white rounded-lg shadow-lg shadow-black/5 hover:shadow-xl hover:shadow-black/10 transition-shadow duration-300 flex items-center justify-center"
+            >
+              <img src="/3.svg" alt="CE Certification" className="max-h-full max-w-full object-contain" />
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
     </div>
   );
 }

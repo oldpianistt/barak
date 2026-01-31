@@ -98,9 +98,6 @@ export function HomePage() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="mb-6 flex items-center justify-center gap-2"
           >
-            <Sparkles className="w-6 h-6 text-neutral-400" />
-            <span className="tracking-[0.3em] uppercase text-xs text-neutral-500">{t('home.premiumCollection')}</span>
-            <Sparkles className="w-6 h-6 text-neutral-400" />
           </motion.div>
 
           <h1 className="text-6xl md:text-8xl lg:text-9xl tracking-[0.2em] uppercase font-light mb-6">
