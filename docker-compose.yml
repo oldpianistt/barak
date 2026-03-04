@@ -1,13 +1,14 @@
+version: '3.8'
+
 services:
-  # PostgreSQL Database
   db:
     image: postgres:16-alpine
     container_name: barak-db
     restart: unless-stopped
     environment:
-      POSTGRES_DB: ${DB_NAME:-mermer_gallery}
-      POSTGRES_USER: ${DB_USERNAME:-postgres}
-      POSTGRES_PASSWORD: ${DB_PASSWORD:-password}
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:
@@ -15,12 +16,11 @@ services:
     networks:
       - barak-network
     healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -U ${DB_USERNAME:-postgres}" ]
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USERNAME}"]
       interval: 10s
       timeout: 5s
       retries: 5
 
-  # Spring Boot Backend
   backend:
     build:
       context: .
@@ -28,22 +28,18 @@ services:
     container_name: barak-backend
     restart: unless-stopped
     environment:
-      # Database configuration
       DB_HOST: db
       DB_PORT: 5432
-      DB_NAME: ${DB_NAME:-mermer_gallery}
-      DB_USERNAME: ${DB_USERNAME:-postgres}
-      DB_PASSWORD: ${DB_PASSWORD:-password}
+      DB_NAME: ${DB_NAME}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
 
-      # Server configuration
       SERVER_PORT: 8081
 
-      # File upload
       UPLOAD_DIR: /app/uploads
       MAX_FILE_SIZE: ${MAX_FILE_SIZE:-10MB}
       MAX_REQUEST_SIZE: ${MAX_REQUEST_SIZE:-10MB}
 
-      # JPA configuration
       DDL_AUTO: ${DDL_AUTO:-update}
       SHOW_SQL: ${SHOW_SQL:-false}
       FORMAT_SQL: ${FORMAT_SQL:-false}
@@ -57,13 +53,12 @@ services:
       db:
         condition: service_healthy
     healthcheck:
-      test: [ "CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8081/actuator/health" ]
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8081/actuator/health"]
       interval: 30s
       timeout: 10s
       retries: 3
       start_period: 40s
 
-  # React Frontend with Nginx
   frontend:
     build:
       context: ./frontend
@@ -80,7 +75,7 @@ services:
       backend:
         condition: service_healthy
     healthcheck:
-      test: [ "CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:80" ]
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:80"]
       interval: 30s
       timeout: 10s
       retries: 3
